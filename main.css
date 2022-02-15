@@ -1,0 +1,200 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Dongle-Regular';
+    src: local('Dongle-Regular'), url('./fonts/dongle/Dongle-Regular.ttf') format('truetype');
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    color: rgb(48, 48, 48);
+    background-color: #ffffff;
+    font-family: 'Dongle-Regular';
+    padding: 2rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline-width: 0;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+/* ========================== */
+/* phân bổ thành phần + căn đều chiều cao */
+
+.card-container {
+    --gap-spacing: 1.5rem; /* tạo biến set 'khoảng trắng giữa các card' */
+    --columns: 4; /* tạo biến set 'số card trên 1 hàng' */
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--gap-spacing)); /* tương đương: -1.5rem */
+}
+
+/* ipad to reponsive ngang */
+@media screen and (max-width: 1023px) {
+    .card-container {   
+        --columns: 3;
+    }
+}
+
+/* ipad thường reponsive dọc */
+@media screen and (max-width: 767px) {
+    .card-container {
+        --columns: 2;
+    }
+}
+
+/* mobile reponsive ngang */
+@media screen and (max-width: 480px) {
+    .card-container {
+        --gap-spacing: 1rem;
+        --columns: 2;
+    }
+}
+
+/* mobile reponsive dọc */
+@media screen and (max-width: 320px) {
+    .card-container {
+        --gap-spacing: 1rem;
+        --columns: 1;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: calc(
+        calc(100% / var(--columns)) - var(--gap-spacing)
+    ); /* 4 card 1 hàng trừ cho 25px grid */
+    margin-left: var(--gap-spacing);
+    margin-bottom: var(--gap-spacing);
+}
+
+.card-image {
+    height: 11rem;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* căn đều class: card-bottom thành 1 hàng */
+}
+
+.card-top {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* căn đều class: card-user thành 1 hàng */
+}
+
+.card-title {
+    word-break: break-word; /* fix lỗi liền từ */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* hiển thị tiêu đề ko quá 3 hàng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-user {
+    display: flex;
+    align-items: center;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-user,
+.card-bottom {
+    margin-top: auto; /*căn đều các phần tử khi tiêu đề quá dài */
+}
+
+/* ======[ css bổ xung cho thành phần ]============= */
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: rgba(100, 100, 101, 0.2) 0px 7px 29px 8px;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 100%;
+    margin-bottom: 1rem;
+}
+
+.card-user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 100rem;
+    flex-shrink: 0;
+}
+
+.card-user-top {
+    display: flex;
+    align-items: center;
+}
+
+i {
+    color: #20e3b2;
+    margin-left: 5px;
+}
+
+.card-user-info {
+    margin-left: 10px;
+}
+
+.card-user-name {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1;
+}
+
+.card-user-game {
+    color: #999;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+/* cart bottom */
+.card-bottom {
+    padding: 25px;
+    border-top: 1px solid #eee;
+}
+
+.card-live {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: #ff6651;
+}
+
+.card-live span {
+    margin-left: 10px;
+}
+.card-watching {
+    margin-left: 10px;
+}
